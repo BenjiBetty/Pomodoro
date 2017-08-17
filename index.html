@@ -13,46 +13,64 @@
     <h1>POMODORO</h1>
     <div id="date"></div>
     <div class="chronometre">
-
+        <div id="minutes"></div><br>
         <div id="secondes"></div>
     </div>
 
     <button type="button" id="lancer">START</button>
+    <button type="button" id="pause">PAUSE</button>
     <button type="button" id="reset">RESET</button>
 
-
-
-    <!-- setInterval, clearInterval, -->
     <!--<script>
         /* Affichage de la date*/
 
         d = new Date();
         document.getElementById("date").innerHTML = d.toDateString();
 
-
-        /* Timer */
-
-        var min = 30;
-        $("#lancer").click(function() {
-            $("#minutes").html(min--);
-        })
     </script>-->
+
 </body>
 
 <script src="assets/js/jquery-3.2.1.js"></script>
 
+
 <script>
     $(document).ready(function() {
-        var secondes = 0;
+        var secondes = 59;
+        var minutes = 19;
         $("#lancer").click(function() {
-            setInterval(function() {
-                secondes += 1;
-                $("#secondes").html(secondes)
+            var time = setInterval(function() {
+                secondes--;
+                $("#secondes").html(secondes + " s");
             }, 1000);
+            $("#pause").click(function() {
+                clearInterval(time);
+                secondes;
+                $("#secondes").html(secondes + " s");
+            });
+            $("#reset").click(function() {
+                clearInterval(time);
+                secondes = 59;
+                $("#secondes").html(secondes + " s");
+            });
         });
-        $("#reset").click(function() {
+        $("#lancer").click(function() {
+            var time = setInterval(function() {
+                minutes--;
+                $("#minutes").html(minutes + " m");
+            }, 60000);
+            $("#pause").click(function() {
+                clearInterval(time);
+                minutes;
+                $("#minutes").html(minutes + " m");
+            });
+            $("#reset").click(function() {
+                clearInterval(time);
+                minutes = 19;
+                $("#minutes").html(minutes + " m");
+            });
+        });
 
-        });
     });
 </script>
 

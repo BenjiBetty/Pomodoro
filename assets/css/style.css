@@ -1,9 +1,9 @@
 body {
     text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .chronometre {
-    display: flex;
     justify-content: center;
     align-items: center;
 }

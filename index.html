@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="assets/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <h1>POMODORO</h1>
+    <div id="date"></div>
+    <div class="chronometre">
+
+        <div id="secondes"></div>
+    </div>
+
+    <button type="button" id="lancer">START</button>
+    <button type="button" id="reset">RESET</button>
+
+
+
+    <!-- setInterval, clearInterval, -->
+    <!--<script>
+        /* Affichage de la date*/
+
+        d = new Date();
+        document.getElementById("date").innerHTML = d.toDateString();
+
+
+        /* Timer */
+
+        var min = 30;
+        $("#lancer").click(function() {
+            $("#minutes").html(min--);
+        })
+    </script>-->
+</body>
+
+<script src="assets/js/jquery-3.2.1.js"></script>
+
+<script>
+    $(document).ready(function() {
+        var secondes = 0;
+        $("#lancer").click(function() {
+            setInterval(function() {
+                secondes += 1;
+                $("#secondes").html(secondes)
+            }, 1000);
+        });
+        $("#reset").click(function() {
+
+        });
+    });
+</script>
+
+</html>

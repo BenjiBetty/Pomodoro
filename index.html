@@ -2,32 +2,30 @@
 <html lang="fr">
 
 <head>
-    <title></title>
+    <title>POMODORO</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="assets/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Saira+Semi+Condensed:300,400,700" rel="stylesheet">
 
 </head>
 
 <body>
     <h1>POMODORO</h1>
     <div id="date"></div>
-    <div class="chronometre">
-        <div id="minutes"></div><br>
-        <div id="secondes"></div>
+    <div class="timer">
+        <div class="chronometre">
+            <div id="minutes"></div>
+            <div id="secondes"></div>
+        </div>
     </div>
-
-    <button type="button" id="lancer">START</button>
-    <button type="button" id="pause">PAUSE</button>
-    <button type="button" id="reset">RESET</button>
-
-    <!--<script>
-        /* Affichage de la date*/
-
-        d = new Date();
-        document.getElementById("date").innerHTML = d.toDateString();
-
-    </script>-->
+    <button type="button" id="lancer"><i class="fa fa-play" aria-hidden="true"></i>
+    </button>
+    <button type="button" id="pause"><i class="fa fa-pause" aria-hidden="true"></i>
+    </button>
+    <button type="button" id="reset"><i class="fa fa-refresh" aria-hidden="true"></i>
+    </button>
+    <button type="button" id="courtePause">5:00 de Pause</button>
 
 </body>
 
@@ -36,39 +34,64 @@
 
 <script>
     $(document).ready(function() {
-        var secondes = 59;
-        var minutes = 19;
+
+        var minutes = 25;
+        var secondes = 0;
+        var pause = 0;
+        var interval = 0;
+
+        //Affichage par défaut
+        $("#minutes").html(minutes + ":");
+        $("#secondes").html("0" + secondes);
+
+
         $("#lancer").click(function() {
-            var time = setInterval(function() {
-                secondes--;
-                $("#secondes").html(secondes + " s");
+
+            //Décompte
+            var interval = setInterval(function() {
+                secondes -= 1;
+                if (secondes < 0) {
+                    minutes--;
+                    secondes = 59;
+                }
+                if (minutes < 0) {
+                    minutes = 0;
+                    secondes = 0;
+                    interval = 0;
+                    alert("Décompte terminé !");
+                }
+
+                $("#secondes").html(secondes);
+                $("#minutes").html(minutes + ":");
             }, 1000);
+
+
+            //Bouton pour mettre en pause le timer
             $("#pause").click(function() {
-                clearInterval(time);
+                clearInterval(interval);
                 secondes;
-                $("#secondes").html(secondes + " s");
+                $("#secondes").html(secondes);
             });
-            $("#reset").click(function() {
-                clearInterval(time);
-                secondes = 59;
-                $("#secondes").html(secondes + " s");
-            });
+
         });
-        $("#lancer").click(function() {
-            var time = setInterval(function() {
-                minutes--;
-                $("#minutes").html(minutes + " m");
-            }, 60000);
-            $("#pause").click(function() {
-                clearInterval(time);
-                minutes;
-                $("#minutes").html(minutes + " m");
-            });
-            $("#reset").click(function() {
-                clearInterval(time);
-                minutes = 19;
-                $("#minutes").html(minutes + " m");
-            });
+        //Bouton pour la pause
+        $("#courtePause").click(function() {
+            setInterval;
+            minutes = 5;
+
+            $("#secondes").html(secondes);
+            $("#minutes").html(minutes + ":");
+        });
+
+        //Bouton pour reset le timer
+        $("#reset").click(function() {
+            clearInterval(interval);
+            secondes = 0;
+            minutes = 25;
+
+            $("#secondes").html("0" + secondes);
+            $("#minutes").html(minutes + ":");
+
         });
 
     });

@@ -13,12 +13,14 @@
 <body>
     <h1>POMODORO</h1>
     <div id="date"></div>
+    <div id="gradient"></div>
     <div class="timer">
         <div class="chronometre">
             <div id="minutes"></div>
             <div id="secondes"></div>
         </div>
     </div>
+
     <button type="button" id="lancer"><i class="fa fa-play" aria-hidden="true"></i>
     </button>
     <button type="button" id="pause"><i class="fa fa-pause" aria-hidden="true"></i>
@@ -27,74 +29,10 @@
     </button>
     <button type="button" id="courtePause">5:00 de Pause</button>
 
+    <script src="assets/js/jquery-3.2.1.js"></script>
+    <script src="assets/js/script.js"></script>
+
 </body>
 
-<script src="assets/js/jquery-3.2.1.js"></script>
-
-
-<script>
-    $(document).ready(function() {
-
-        var minutes = 25;
-        var secondes = 0;
-        var pause = 0;
-        var interval = 0;
-
-        //Affichage par défaut
-        $("#minutes").html(minutes + ":");
-        $("#secondes").html("0" + secondes);
-
-
-        $("#lancer").click(function() {
-
-            //Décompte
-            var interval = setInterval(function() {
-                secondes -= 1;
-                if (secondes < 0) {
-                    minutes--;
-                    secondes = 59;
-                }
-                if (minutes < 0) {
-                    minutes = 0;
-                    secondes = 0;
-                    interval = 0;
-                    alert("Décompte terminé !");
-                }
-
-                $("#secondes").html(secondes);
-                $("#minutes").html(minutes + ":");
-            }, 1000);
-
-
-            //Bouton pour mettre en pause le timer
-            $("#pause").click(function() {
-                clearInterval(interval);
-                secondes;
-                $("#secondes").html(secondes);
-            });
-
-        });
-        //Bouton pour la pause
-        $("#courtePause").click(function() {
-            setInterval;
-            minutes = 5;
-
-            $("#secondes").html(secondes);
-            $("#minutes").html(minutes + ":");
-        });
-
-        //Bouton pour reset le timer
-        $("#reset").click(function() {
-            clearInterval(interval);
-            secondes = 0;
-            minutes = 25;
-
-            $("#secondes").html("0" + secondes);
-            $("#minutes").html(minutes + ":");
-
-        });
-
-    });
-</script>
 
 </html>
